@@ -1,0 +1,30 @@
+<div
+  class="container search-results"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+>
+  <div class="row" >
+    <ngx-spinner
+      bdOpacity = 0.9
+      bdColor = ""
+      size = "default"
+      color = "#581f87"
+      type = "ball-pulse-sync"
+      [fullScreen] = "true">
+    </ngx-spinner>
+      <div class="news col-lg-4" *ngFor="let article of articles">
+        <a>
+          <div class="media">
+            <img src="{{article.media}}" alt="">
+          </div>
+          <div class="title">
+            <a>
+              {{article?.title?.rendered}}
+            </a>
+          </div>
+        </a>
+      </div>
+  </div>
+</div>
