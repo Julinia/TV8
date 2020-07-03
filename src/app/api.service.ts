@@ -21,10 +21,17 @@ export class ApiService {
         return posts;
       }));
   }
+
   public getMedia(id: number){
     return this.httpClient.get('https://tv8.md/wp-json/wp/v2/media/' + id);
   }
   public getPost(id: number){
-    return this.httpClient.get('https://tv8.md/wp-json/wp/v2/posts/' + id);
+    return this.httpClient.get('https://tv8.md/wp-json/wp/v2/posts/' + id)
+      .pipe(map((post: any) => {
+          this.getMedia(post.featured_media).subscribe((res: any) => {
+            post.media = res.source_url;
+          });
+          return post;
+        }));
   }
 }

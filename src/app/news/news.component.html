@@ -15,7 +15,7 @@
       [fullScreen] = "true">
     </ngx-spinner>
       <div class="news col-lg-4" *ngFor="let article of articles">
-        <a>
+        <a [routerLink]="['/news', article.id]">
           <div class="media">
             <img src="{{article.media}}" alt="">
           </div>

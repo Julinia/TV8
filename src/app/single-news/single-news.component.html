@@ -1,4 +1,9 @@
-<h1>{{post?.title?.rendered}}</h1>
-<div>
-  {{html}}
-</div>
+<body>
+  <h1>{{post?.title?.rendered}}</h1>
+  <div class="embed-responsive embed-responsive-16by9" *ngIf="post?.video_embed">
+    <iframe [src]="video" class="embed-responsive-item embed-responsive-16by9" frameborder="0" allowfullscreen></iframe >
+  </div>
+  <img *ngIf="!post?.video_embed" src="{{post?.media}}" class="img-fluid" alt="">
+  <div [innerHTML]="html">
+  </div>
+</body>

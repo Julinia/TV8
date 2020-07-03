@@ -13,12 +13,13 @@ export class SingleNewsComponent implements OnInit {
   post;
   postId;
   html;
+  video;
 
   constructor(
     public router: Router,
     private apiService: ApiService,
     private route: ActivatedRoute,
-    // private sanitizer: DomSanitizer,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
@@ -27,8 +28,8 @@ export class SingleNewsComponent implements OnInit {
 
     this.apiService.getPost(this.postId).subscribe((res: any) => {
       this.post = res;
-      //this.html = this.sanitizer.bypassSecurityTrustHtml(res.content.rendered);
-      console.log(res);
+      this.html = this.sanitizer.bypassSecurityTrustHtml(res.content.rendered);
+      this.video = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.post?.video_embed.split('/')[3]);
     });
   }
 

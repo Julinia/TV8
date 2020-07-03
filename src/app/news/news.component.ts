@@ -51,6 +51,4 @@ export class NewsComponent implements OnInit {
         this.notscrolly = true;
       });
   }
-
-
 }
